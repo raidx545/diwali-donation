@@ -256,7 +256,7 @@ function App() {
         error: true,
         message: errorMessage
       });
-      
+
       setTimeout(() => {
         setPaymentStatus({
           loading: false,
@@ -278,7 +278,12 @@ function App() {
             <div className="logo-box"><Flame className="w-6 h-6 text-amber-700" /></div>
             <span className="brand">Light For All</span>
           </div>
-          <button className="cta-header">Donate</button>
+          <button
+            className="cta-header"
+            onClick={() => document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Donate
+          </button>
         </div>
       </header>
 
@@ -308,11 +313,9 @@ function App() {
             </div>
           </section>
 
-          <aside className="donation-card sticky top-6">
+          <aside className="donation-card sticky top-6" id="donate">
             <div className="card-inner">
               <div className="card-header">Yes! I’d like to gift</div>
-
-              
 
               <div className="field-group">
                 <div className="segmented">
@@ -345,11 +348,6 @@ function App() {
                         onClick={() => setFormData({ ...formData, amount: String(v) })}
                       >₹{v.toLocaleString()}</button>
                     ))}
-                    <button
-                      type="button"
-                      className="amount-btn col-span-2"
-                      onClick={() => setFormData({ ...formData, amount: '' })}
-                    >Other Amount</button>
                   </div>
                 </div>
 
@@ -435,7 +433,12 @@ function App() {
                 <Trophy className="w-5 h-5 text-amber-700" />
                 <h2 className="sub-title m-0">Top Donors</h2>
               </div>
-              <button onClick={loadDonationsFromAPI} className="btn-ghost"><RefreshCw className="w-4 h-4" /> Refresh</button>
+              <div className="flex items-center gap-4">
+                <div className="text-sm text-neutral-700">
+                  <span className="font-medium">₹{totalRaised.toLocaleString()}</span> raised • {donorCount} donors
+                </div>
+                <button onClick={loadDonationsFromAPI} className="btn-ghost"><RefreshCw className="w-4 h-4" /> Refresh</button>
+              </div>
             </div>
             <div className="space-y-3">
               {sortedDonations.map((donation, index) => (
