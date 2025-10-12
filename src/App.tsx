@@ -47,7 +47,6 @@ function App() {
     email: '',
     amount: ''
   });
-  const [frequency, setFrequency] = useState<'once' | 'monthly'>('once');
   const [paymentStatus, setPaymentStatus] = useState<PaymentStatus>({
     loading: false,
     success: false,
@@ -316,25 +315,6 @@ function App() {
           <aside className="donation-card sticky top-6" id="donate">
             <div className="card-inner">
               <div className="card-header">Yes! I’d like to gift</div>
-
-              <div className="field-group">
-                <div className="segmented">
-                  <button
-                    type="button"
-                    className={`seg-btn ${frequency === 'once' ? 'active' : ''}`}
-                    onClick={() => setFrequency('once')}
-                  >
-                    Give Once
-                  </button>
-                  <button
-                    type="button"
-                    className={`seg-btn ${frequency === 'monthly' ? 'active' : ''}`}
-                    onClick={() => setFrequency('monthly')}
-                  >
-                    Give Monthly
-                  </button>
-                </div>
-              </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="field-group">
