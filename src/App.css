@@ -1,38 +1,186 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Lobster:wght@400&family=Great+Vibes:wght@400&family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #fff7e6 0%, #ffe8cc 50%, #fff0d9 100%);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.diwali-header {
+  background: linear-gradient(90deg, #dc2626 0%, #f97316 50%, #eab308 100%);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.diwali-hero {
+  background: linear-gradient(135deg, #f97316 0%, #dc2626 50%, #fbbf24 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+.diya-decoration {
+  position: absolute;
+  animation: pulse 2s infinite;
+  font-size: 3rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.diya-decoration-1 {
+  top: 20px;
+  left: 30px;
+}
+
+.diya-decoration-2 {
+  top: 30px;
+  right: 50px;
+  animation: bounce 2s infinite;
+  font-size: 2rem;
+}
+
+.diya-decoration-3 {
+  bottom: 20px;
+  left: 25%;
+  animation: pulse 2.5s infinite;
+}
+
+.diya-decoration-4 {
+  bottom: 30px;
+  right: 33%;
+  animation: bounce 2.5s infinite;
+  font-size: 2.5rem;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.heading-festive {
+  font-family: 'Lobster', cursive;
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #fef3c7, #fed7aa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.heading-festive-lg {
+  font-family: 'Lobster', cursive;
+  font-size: 3rem;
+  filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.2));
+}
+
+.stat-card-gold {
+  background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+  border: 4px solid #fbbf24;
+}
+
+.stat-card-red {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border: 4px solid #dc2626;
+}
+
+.donation-form {
+  background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+  border: 4px solid #fbbf24;
+}
+
+.leaderboard-card {
+  background: linear-gradient(135deg, #fed7aa 0%, #fee2e2 100%);
+  border: 4px solid #f97316;
+}
+
+.donate-button {
+  background: linear-gradient(90deg, #dc2626 0%, #f97316 100%);
+  border: 2px solid #7c2d12;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.donate-button:hover:not(:disabled) {
+  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+  transform: scale(1.05);
+}
+
+.refresh-button {
+  background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+  border: 2px solid #5b21b6;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.refresh-button:hover {
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.quick-amount-btn {
+  border: 2px solid #f97316;
+  color: #dc2626;
+  background: white;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.quick-amount-btn:hover {
+  background: #fed7aa;
+  transform: scale(1.05);
+}
+
+.donor-rank-1 {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde047 100%);
+  border: 2px solid #fbbf24;
+}
+
+.donor-rank-2 {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border: 2px solid #9ca3af;
+}
+
+.donor-rank-3 {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  border: 2px solid #f97316;
+}
+
+.donor-rank-other {
+  background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+  border: 2px solid #fbbf24;
+}
+
+.footer {
+  background: linear-gradient(90deg, #dc2626 0%, #f97316 100%);
+  border-top: 4px solid #fbbf24;
+}
+
+.medal-badge {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.input-field {
+  border: 2px solid #f97316;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #dc2626;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
