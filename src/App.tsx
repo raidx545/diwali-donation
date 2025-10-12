@@ -300,15 +300,6 @@ function App() {
               <p>
                 When you give the gift of education, you’re passing on the same joy, excitement, and sense of wonder we all felt as children during Diwali.
               </p>
-
-              <h3 className="sub-title">Why your contribution matters</h3>
-              <ul className="bullet-list">
-                <li>Interactive support classes that keep children engaged and prevent dropouts.</li>
-                <li>Creative activities that build motivation, confidence, and self-expression.</li>
-                <li>Awareness drives that empower parents and communities.</li>
-                <li>Preventive actions addressing risks like early marriage and unsafe labor.</li>
-                <li>Children’s collectives that build confidence and leadership.</li>
-              </ul>
             </div>
           </section>
 
