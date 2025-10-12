@@ -184,3 +184,67 @@ code {
   outline: none;
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
+
+/* ===== New minimal theme for main page ===== */
+.bg-warm { background: #f9f6ef; }
+
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid #eae6dd;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.site-footer { background: #fffdf7; border-top: 1px solid #eae6dd; }
+
+.logo-box { background: #fff6d9; border: 1px solid #f2e3b3; width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center; }
+.brand { font-weight: 800; letter-spacing: 0.2px; color: #1f2937; }
+
+.cta-header { background: #fde68a; border: 1px solid #f59e0b; color: #7c2d12; font-weight: 700; padding: 6px 14px; border-radius: 8px; }
+.cta-header:hover { filter: brightness(0.98); }
+
+.page-title { font-size: 38px; line-height: 1.2; margin: 0 0 14px; font-weight: 800; color: #1f2937; }
+.section-title { font-size: 18px; font-weight: 700; color: #374151; margin: 10px 0 8px; }
+.sub-title { font-size: 16px; font-weight: 700; color: #374151; margin: 16px 0 8px; }
+.prose-wrap p { color: #4b5563; margin: 8px 0 14px; }
+.bullet-list { list-style: disc; padding-left: 1.25rem; color: #4b5563; }
+.bullet-list li { margin: 6px 0; }
+
+.card { background: #ffffff; border: 1px solid #eae6dd; border-radius: 12px; padding: 16px; }
+.card.neutral { background: #fffef9; }
+
+.donation-card .card-inner { background: #fffef7; border: 1px solid #eadfcb; border-radius: 12px; padding: 18px; box-shadow: 0 2px 0 #f2ead7; }
+.donation-card .card-header { font-weight: 800; color: #1f2937; padding: 10px 0 14px; border-bottom: 1px solid #eee7d7; margin-bottom: 14px; }
+
+.field-group { display: grid; gap: 8px; }
+.field-label { font-size: 12px; font-weight: 700; color: #6b7280; }
+
+.segmented { display: grid; grid-auto-flow: column; gap: 8px; }
+.seg-btn { background: #ffffff; border: 1px solid #e5e7eb; color: #374151; padding: 8px 10px; border-radius: 8px; font-weight: 600; }
+.seg-btn.active { background: #fff3d6; border-color: #f59e0b; color: #7c2d12; }
+
+.amount-btn { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 10px 12px; font-weight: 700; color: #374151; text-align: center; }
+.amount-btn.picked { background: #fff3d6; border-color: #f59e0b; color: #7c2d12; }
+
+.text-input { width: 100%; border: 1px solid #e5e7eb; background: #ffffff; border-radius: 8px; padding: 10px 12px; outline: none; }
+.text-input:focus { border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15); }
+
+.btn-primary { display: inline-flex; gap: 8px; align-items: center; justify-content: center; background: #f59e0b; color: #1f2937; border: 1px solid #b45309; font-weight: 800; border-radius: 10px; padding: 12px 14px; }
+.btn-primary:hover { filter: brightness(0.98); }
+.btn-disabled { background: #e5e7eb; color: #6b7280; border-color: #9ca3af; cursor: not-allowed; }
+.btn-ghost { display: inline-flex; align-items: center; gap: 6px; color: #6b7280; border: 1px solid #e5e7eb; padding: 6px 10px; border-radius: 8px; background: #fff; }
+.btn-ghost:hover { background: #f9fafb; }
+
+.note { display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 8px; border: 1px solid; font-weight: 600; }
+.note-info { background: #eef2ff; color: #4338ca; border-color: #c7d2fe; }
+.note-success { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+.note-error { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+.disclaimer { color: #6b7280; font-size: 12px; margin-top: 6px; }
+
+.donor-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid #eee7d7; border-radius: 10px; background: #ffffff; }
+.rank { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 999px; background: #fff7dd; color: #7c2d12; font-weight: 800; border: 1px solid #f59e0b; }
+.donor-name { font-weight: 700; color: #1f2937; }
+.donor-meta { font-size: 12px; color: #6b7280; }
+.donor-amt { font-weight: 800; color: #b91c1c; }
+.verified { font-size: 12px; color: #047857; font-weight: 700; }

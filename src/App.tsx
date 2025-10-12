@@ -38,8 +38,8 @@ declare global {
 }
 
 function App() {
-  const API_URL = 'http://localhost:3001/api';
-  const RAZORPAY_KEY_ID = 'rzp_test_RSUvywvrB0tDud';
+  const API_URL = process.env.REACT_APP_API_URL || 'https://backend-server-tew3.onrender.com/api';
+  const RAZORPAY_KEY_ID = process.env.REACT_APP_RAZORPAY_KEY_ID || 'rzp_test_RSUvywvrB0tDud';
   
   const [donations, setDonations] = useState<Donation[]>([]);
   const [formData, setFormData] = useState<FormData>({
@@ -47,6 +47,7 @@ function App() {
     email: '',
     amount: ''
   });
+  const [frequency, setFrequency] = useState<'once' | 'monthly'>('once');
   const [paymentStatus, setPaymentStatus] = useState<PaymentStatus>({
     loading: false,
     success: false,
@@ -270,241 +271,196 @@ function App() {
   const sortedDonations = [...donations].sort((a, b) => b.amount - a.amount);
 
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <header className="diwali-header shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="bg-white p-2 rounded-lg shadow-lg transform hover:scale-110 transition">
-                <Flame className="w-8 h-8 text-orange-600" />
-              </div>
-              <div>
-                <h1 className="heading-festive drop-shadow-lg">
-                  Light For All
-                </h1>
-                <p className="text-yellow-50 text-sm font-bold">💡 Light up someone's life this Diwali 💡</p>
-              </div>
-            </div>
+    <div className="min-h-screen bg-warm">
+      <header className="site-header">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="logo-box"><Flame className="w-6 h-6 text-amber-700" /></div>
+            <span className="brand">Light For All</span>
           </div>
+          <button className="cta-header">Donate</button>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <div className="diwali-hero rounded-3xl m-8 p-12 shadow-2xl">
-        <div className="diya-decoration diya-decoration-1">🪔</div>
-        <div className="diya-decoration diya-decoration-2">✨</div>
-        <div className="diya-decoration diya-decoration-3">🪔</div>
-        <div className="diya-decoration diya-decoration-4">🌟</div>
-        
-        <div className="relative z-10 text-center max-w-2xl mx-auto">
-          <h2 className="heading-festive-lg text-white mb-4">
-            Celebrate Together
-          </h2>
-          <p className="text-yellow-50 text-xl font-bold mb-8 drop-shadow-md">
-            Light up someone's life this Diwali. Your generous donation brings hope and happiness to those in need.
-          </p>
-          <button className="bg-white text-red-600 font-bold py-4 px-8 rounded-xl text-lg hover:bg-yellow-50 transform hover:scale-105 transition shadow-xl border-2 border-red-600">
-            ✨ Donate Now ✨
-          </button>
-        </div>
-      </div>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
+          <section>
+            <h1 className="page-title">Why donate?</h1>
+            <div className="prose-wrap">
+              <h2 className="section-title">Light For All wishes you a Happy Diwali!</h2>
+              <p>
+                As we embrace the joy and light of the festive season, let’s extend that brightness to the lives of children who need it most. This Diwali, your generous donation can help children continue their education and build a brighter future.
+              </p>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          <div className="stat-card-gold rounded-2xl shadow-lg p-6">
-            <div className="flex items-center space-x-4">
-              <div className="bg-yellow-200 p-3 rounded-xl text-2xl">💰</div>
-              <div>
-                <p className="text-gray-700 text-sm font-bold">
-                  Total Raised
-                </p>
-                <p className="text-4xl font-bold text-orange-600">₹{totalRaised.toLocaleString()}</p>
-              </div>
-            </div>
-          </div>
-          <div className="stat-card-red rounded-2xl shadow-lg p-6">
-            <div className="flex items-center space-x-4">
-              <div className="bg-red-200 p-3 rounded-xl text-2xl">👥</div>
-              <div>
-                <p className="text-gray-700 text-sm font-bold">
-                  Total Donors
-                </p>
-                <p className="text-4xl font-bold text-red-600">{donorCount}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+              <h3 className="sub-title">This Diwali, let your gift glow beyond the festival.</h3>
+              <p>
+                When you give the gift of education, you’re passing on the same joy, excitement, and sense of wonder we all felt as children during Diwali.
+              </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Donation Form */}
-          <div className="donation-form rounded-2xl shadow-xl p-8">
-            <h2 className="heading-festive text-2xl text-red-600 mb-6">
-              🎁 Make a Donation
-            </h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-sm font-bold text-gray-800 mb-2">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="input-field w-full px-4 py-3 rounded-lg transition"
-                  placeholder="Your Name"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-bold text-gray-800 mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="input-field w-full px-4 py-3 rounded-lg transition"
-                  placeholder="your@email.com"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-bold text-gray-800 mb-2">
-                  Donation Amount (₹)
-                </label>
-                <input
-                  type="number"
-                  name="amount"
-                  value={formData.amount}
-                  onChange={handleInputChange}
-                  className="input-field w-full px-4 py-3 rounded-lg transition"
-                  placeholder="500"
-                  min="1"
-                  required
-                />
-              </div>
-              <div className="flex gap-3">
-                {[100, 250, 500, 1000].map(amount => (
+              <h3 className="sub-title">Why your contribution matters</h3>
+              <ul className="bullet-list">
+                <li>Interactive support classes that keep children engaged and prevent dropouts.</li>
+                <li>Creative activities that build motivation, confidence, and self-expression.</li>
+                <li>Awareness drives that empower parents and communities.</li>
+                <li>Preventive actions addressing risks like early marriage and unsafe labor.</li>
+                <li>Children’s collectives that build confidence and leadership.</li>
+              </ul>
+            </div>
+          </section>
+
+          <aside className="donation-card sticky top-6">
+            <div className="card-inner">
+              <div className="card-header">Yes! I’d like to gift</div>
+
+              
+
+              <div className="field-group">
+                <div className="segmented">
                   <button
-                    key={amount}
                     type="button"
-                    onClick={() => setFormData({ ...formData, amount: amount.toString() })}
-                    className="quick-amount-btn flex-1 py-2 px-4 rounded-lg transition"
+                    className={`seg-btn ${frequency === 'once' ? 'active' : ''}`}
+                    onClick={() => setFrequency('once')}
                   >
-                    ₹{amount}
+                    Give Once
                   </button>
-                ))}
-              </div>
-              {paymentStatus.message && (
-                <div className={`p-4 rounded-lg flex items-center space-x-2 ${
-                  paymentStatus.success ? 'bg-green-100 text-green-800 border-2 border-green-400' :
-                  paymentStatus.error ? 'bg-red-100 text-red-800 border-2 border-red-400' :
-                  'bg-blue-100 text-blue-800 border-2 border-blue-400'
-                }`}>
-                  {paymentStatus.loading && <Loader className="w-5 h-5 animate-spin" />}
-                  {paymentStatus.success && <CheckCircle className="w-5 h-5" />}
-                  {paymentStatus.error && <XCircle className="w-5 h-5" />}
-                  <span className="font-bold">{paymentStatus.message}</span>
+                  <button
+                    type="button"
+                    className={`seg-btn ${frequency === 'monthly' ? 'active' : ''}`}
+                    onClick={() => setFrequency('monthly')}
+                  >
+                    Give Monthly
+                  </button>
                 </div>
-              )}
-
-              <button
-                type="submit"
-                disabled={paymentStatus.loading}
-                className={`donate-button w-full py-4 rounded-lg flex items-center justify-center space-x-2 ${
-                  paymentStatus.loading 
-                    ? 'bg-gray-400 text-white cursor-not-allowed border-gray-500' 
-                    : 'text-white'
-                }`}
-              >
-                {paymentStatus.loading ? (
-                  <>
-                    <Loader className="w-5 h-5 animate-spin" />
-                    <span>Processing...</span>
-                  </>
-                ) : (
-                  <>
-                    <Heart className="w-5 h-5" />
-                    <span>Donate with Razorpay</span>
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
-
-          {/* Leaderboard */}
-          <div className="leaderboard-card rounded-2xl shadow-xl p-8">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-3">
-                <span className="text-3xl">🏆</span>
-                <h2 className="heading-festive text-2xl text-red-600">
-                  Top Donors
-                </h2>
               </div>
-              <button
-                onClick={loadDonationsFromAPI}
-                className="refresh-button flex items-center space-x-2 px-4 py-2 text-white rounded-lg transition"
-              >
-                <RefreshCw className="w-4 h-4" />
-                <span>Refresh</span>
-              </button>
-            </div>
-            <div className="space-y-4">
-              {sortedDonations.map((donation, index) => (
-                <div
-                  key={donation.id}
-                  className={`flex items-center justify-between p-4 rounded-xl transition hover:shadow-lg ${
-                    index === 0
-                      ? 'donor-rank-1'
-                      : index === 1
-                      ? 'donor-rank-2'
-                      : index === 2
-                      ? 'donor-rank-3'
-                      : 'donor-rank-other'
-                  }`}
+
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="field-group">
+                  <label className="field-label">Choose an amount to donate</label>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[5000, 10000, 20000, 25000].map(v => (
+                      <button
+                        key={v}
+                        type="button"
+                        className={`amount-btn ${formData.amount === String(v) ? 'picked' : ''}`}
+                        onClick={() => setFormData({ ...formData, amount: String(v) })}
+                      >₹{v.toLocaleString()}</button>
+                    ))}
+                    <button
+                      type="button"
+                      className="amount-btn col-span-2"
+                      onClick={() => setFormData({ ...formData, amount: '' })}
+                    >Other Amount</button>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="field-label">Full Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="text-input"
+                      placeholder="Your Name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="field-label">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="text-input"
+                      placeholder="you@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="field-label">Donation Amount (₹)</label>
+                  <input
+                    type="number"
+                    name="amount"
+                    value={formData.amount}
+                    onChange={handleInputChange}
+                    className="text-input"
+                    placeholder="5000"
+                    min="1"
+                    required
+                  />
+                </div>
+
+                {paymentStatus.message && (
+                  <div className={`note ${
+                    paymentStatus.success ? 'note-success' : paymentStatus.error ? 'note-error' : 'note-info'
+                  }`}>
+                    {paymentStatus.loading && <Loader className="w-4 h-4 animate-spin" />}
+                    {paymentStatus.success && <CheckCircle className="w-4 h-4" />}
+                    {paymentStatus.error && <XCircle className="w-4 h-4" />}
+                    <span>{paymentStatus.message}</span>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={paymentStatus.loading}
+                  className={`btn-primary w-full ${paymentStatus.loading ? 'btn-disabled' : ''}`}
                 >
-                  <div className="flex items-center space-x-4">
-                    <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center medal-badge ${
-                        index === 0
-                          ? 'bg-yellow-400 text-yellow-900'
-                          : index === 1
-                          ? 'bg-gray-400 text-gray-900'
-                          : index === 2
-                          ? 'bg-orange-400 text-orange-900'
-                          : 'bg-yellow-300 text-yellow-800'
-                      }`}
-                    >
-                      {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1}
-                    </div>
+                  {paymentStatus.loading ? (
+                    <>
+                      <Loader className="w-5 h-5 animate-spin" />
+                      <span>Processing...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Heart className="w-5 h-5" />
+                      <span>Donate with Razorpay</span>
+                    </>
+                  )}
+                </button>
+                <p className="disclaimer">By donating, you agree to our terms and acknowledge this is a charitable contribution.</p>
+              </form>
+            </div>
+          </aside>
+        </div>
+
+        <section className="mt-12">
+          <div className="card neutral">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <Trophy className="w-5 h-5 text-amber-700" />
+                <h2 className="sub-title m-0">Top Donors</h2>
+              </div>
+              <button onClick={loadDonationsFromAPI} className="btn-ghost"><RefreshCw className="w-4 h-4" /> Refresh</button>
+            </div>
+            <div className="space-y-3">
+              {sortedDonations.map((donation, index) => (
+                <div key={donation.id} className="donor-row">
+                  <div className="flex items-center gap-3">
+                    <div className={`rank rank-${index}`}>{index + 1}</div>
                     <div>
-                      <p className="font-bold text-gray-900">{donation.name}</p>
-                      <p className="text-sm text-gray-600">{donation.location} • {donation.date}</p>
+                      <p className="donor-name">{donation.name}</p>
+                      <p className="donor-meta">{donation.location} • {donation.date}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-2xl font-bold text-red-600">₹{donation.amount.toLocaleString()}</p>
-                    {donation.paymentId && (
-                      <p className="text-xs text-green-700 font-bold">✓ Verified</p>
-                    )}
+                    <p className="donor-amt">₹{donation.amount.toLocaleString()}</p>
+                    {donation.paymentId && <p className="verified">✓ Verified</p>}
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </section>
       </main>
 
-      {/* Footer */}
-      <footer className="footer mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
-          <p className="text-white text-lg font-bold drop-shadow-md">
-            🪔 © 2025 Light For All. Every donation brings light and hope this Diwali. 🪔
-          </p>
+      <footer className="site-footer">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-center text-sm text-neutral-600">
+          © 2025 Light For All
         </div>
       </footer>
     </div>
