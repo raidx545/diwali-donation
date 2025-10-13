@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Trophy, TrendingUp, Users, CheckCircle, XCircle, Loader, RefreshCw, Flame } from 'lucide-react';
+import { Heart, Trophy, TrendingUp, Users, CheckCircle, XCircle, Loader, RefreshCw } from 'lucide-react';
 import './App.css';
 
 interface Donation {
@@ -164,13 +164,13 @@ function App() {
         currency: 'INR',
         name: 'Light For All',
         description: 'Donation for Diwali Charity',
-        image: 'https://via.placeholder.com/150x150/DC2626/FFFFFF?text=LFA',
+        image: `${window.location.origin}/lightforall.png`,
         prefill: {
           name: formData.name,
           email: formData.email,
         },
         theme: {
-          color: '#DC2626'
+          color: '#f59e0b'
         },
         handler: async function (response: RazorpayResponse) {
           console.log('Payment successful:', response);
@@ -274,7 +274,7 @@ function App() {
       <header className="site-header">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="logo-box"><Flame className="w-6 h-6 text-amber-700" /></div>
+            <img src="/lightforall.png" alt="Light For All Logo" className="h-10 w-auto" />
             <span className="brand">Light For All</span>
           </div>
           <button
