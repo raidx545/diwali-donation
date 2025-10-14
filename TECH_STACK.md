@@ -87,7 +87,7 @@ A full-stack donation platform for "Light For All" charity campaign, enabling us
 - **Port**: `3001` (default) or `process.env.PORT`
 - **Host**: `0.0.0.0` (binds to all network interfaces)
 - **Deployment**: Render.com
-  - Production URL: `https://backend-server-r89y.onrender.com`
+  - Production URL: `https://backend-server.onrender.com`
   - Command: `npm start`
 
 ---
