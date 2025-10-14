@@ -38,8 +38,8 @@ declare global {
 }
 
 function App() {
-  const API_URL = process.env.REACT_APP_API_URL || 'https://backend-server-r89y.onrender.com/api';
-  const RAZORPAY_KEY_ID = process.env.REACT_APP_RAZORPAY_KEY_ID || 'rzp_test_RSUvywvrB0tDud';
+  const API_URL = process.env.REACT_APP_API_URL;
+  const RAZORPAY_KEY_ID = process.env.REACT_APP_RAZORPAY_KEY_ID;
   
   const [donations, setDonations] = useState<Donation[]>([]);
   const [formData, setFormData] = useState<FormData>({
