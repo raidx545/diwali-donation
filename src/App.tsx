@@ -434,7 +434,7 @@ function App() {
 
       <footer className="site-footer">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-center text-sm text-neutral-600">
-          © 2025 Light For All
+          Thank You For visiting the page
         </div>
       </footer>
     </div>
